@@ -18,6 +18,7 @@ exports.getAllThemes = async () => {
   try {
     const [result] = await pool.execute(query);
     console.log("Fetched all themes");
+    return result;
   } catch (error) {
     console.error("Failed to fetch all themes");
   }
