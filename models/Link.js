@@ -11,6 +11,18 @@ exports.addLink = async (url, title, theme_id) => {
   }
 };
 
+exports.getAllLinks = async () => {
+  const query = "SELECT * FROM links";
+
+  try {
+    const [result] = await pool.execute(query);
+    console.log("Fetched all links");
+    return result;
+  } catch (error) {
+    console.error("Failed to fetch all links");
+  }
+};
+
 exports.deleteLink = async (id) => {
   const query = "DELETE FROM links WHERE id = ?";
 
