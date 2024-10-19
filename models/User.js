@@ -22,15 +22,17 @@ exports.verifyUser = async (email, password) => {
 
     if (!user) {
       console.log("User not found");
+      return false;
     }
 
     const valid = await bcrypt.compare(password, user.hash);
 
     if (!valid) {
       console.log("Invalid password");
+      return false;
     }
 
-    return valid;
+    return true;
   } catch (error) {
     console.error("Failed to verify user");
   }
