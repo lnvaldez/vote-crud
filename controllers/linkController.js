@@ -36,7 +36,7 @@ exports.updateLink = async (req, res) => {
 };
 
 exports.voteForLink = async (req, res) => {
-  const link_id = req.params.id;
+  const link_id = req.params.link_id;
 
   try {
     await Link.voteForLink(link_id);
