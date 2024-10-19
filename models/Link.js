@@ -23,6 +23,17 @@ exports.getThemeLinks = async (theme_id) => {
   }
 };
 
+exports.updateLink = async (link_id, url, title) => {
+  const query = "UPDATE links SET url = ?, title = ? WHERE id = ?";
+
+  try {
+    await pool.execute(query, [url, title, link_id]);
+    console.log("Updated link");
+  } catch (error) {
+    console.error("Failed to update link");
+  }
+};
+
 exports.deleteLink = async (id) => {
   const query = "DELETE FROM links WHERE id = ?";
 
