@@ -1,4 +1,5 @@
 const Link = require("../models/Link");
+const { link } = require("../routes/themeRoutes");
 
 exports.addLink = async (req, res) => {
   const { url, title, theme_id } = req.body;
@@ -19,6 +20,17 @@ exports.getThemeLinks = async (req, res) => {
     return res.status(201).json(result);
   } catch (error) {
     return res.status(500).json({ error: "Failed to fetch all theme links" });
+  }
+};
+
+exports.updateLink = async (req, res) => {
+  const { url, title, link_id } = req.body;
+
+  try {
+    await Link.updateLink(url, title, link_id);
+    return res.status(200).json({ message: "Link updated" });
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to update link" });
   }
 };
 
