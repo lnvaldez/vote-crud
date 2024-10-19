@@ -5,6 +5,7 @@ const router = express.Router();
 
 router.post("/", controller.createTheme);
 router.get("/", controller.getAllThemes);
+router.put("/", controller.updateTheme);
 router.delete("/:id", controller.deleteTheme);
 
 module.exports = router;
