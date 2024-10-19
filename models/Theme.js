@@ -24,6 +24,18 @@ exports.getAllThemes = async () => {
   }
 };
 
+exports.updateTheme = async (title, description, img_url, theme_id) => {
+  const query =
+    "UPDATE themes SET title = ?, description = ?, img_url = ? WHERE id = ?";
+
+  try {
+    await pool.execute(query, [title, description, img_url, theme_id]);
+    console.log("Theme updated");
+  } catch (error) {
+    console.error("Failed to update theme");
+  }
+};
+
 exports.deleteTheme = async (id) => {
   const query = "DELETE FROM themes WHERE id = ?";
 
