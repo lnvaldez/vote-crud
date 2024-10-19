@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.post("/", controller.createTheme);
 router.get("/", controller.getAllThemes);
-router.put("/", controller.updateTheme);
+router.put("/:theme_id", controller.updateTheme);
 router.put("/vote/:theme_id", controller.voteForTheme);
 router.delete("/:id", controller.deleteTheme);
 
