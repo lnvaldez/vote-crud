@@ -20,6 +20,17 @@ exports.getAllThemes = async (req, res) => {
   }
 };
 
+exports.updateTheme = async (req, res) => {
+  const { title, description, img_url, theme_id } = req.body;
+
+  try {
+    await Theme.updateTheme(title, description, img_url, theme_id);
+    res.status(200).json({ message: "Theme updated" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update theme" });
+  }
+};
+
 exports.deleteTheme = async (req, res) => {
   const id = req.params.id;
 
