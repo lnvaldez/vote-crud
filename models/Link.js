@@ -11,8 +11,8 @@ exports.addLink = async (url, title, theme_id) => {
   }
 };
 
-exports.getThemeLinks = async () => {
-  const query = "SELECT * FROM links";
+exports.getThemeLinks = async (theme_id) => {
+  const query = "SELECT * FROM links WHERE theme_id = ?";
 
   try {
     const [result] = await pool.execute(query);
