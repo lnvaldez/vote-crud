@@ -15,11 +15,11 @@ exports.getThemeLinks = async (theme_id) => {
   const query = "SELECT * FROM links WHERE theme_id = ?";
 
   try {
-    const [result] = await pool.execute(query);
-    console.log("Fetched all links");
+    const [result] = await pool.execute(query, [theme_id]);
+    console.log("Fetched all theme links");
     return result;
   } catch (error) {
-    console.error("Failed to fetch all links");
+    console.error("Failed to fetch all theme links");
   }
 };
 
