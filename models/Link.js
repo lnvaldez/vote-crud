@@ -23,7 +23,7 @@ exports.getThemeLinks = async (theme_id) => {
   }
 };
 
-exports.updateLink = async (link_id, url, title) => {
+exports.updateLink = async (url, title, link_id) => {
   const query = "UPDATE links SET url = ?, title = ? WHERE id = ?";
 
   try {
