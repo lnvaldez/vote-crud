@@ -24,7 +24,8 @@ exports.getThemeLinks = async (req, res) => {
 };
 
 exports.updateLink = async (req, res) => {
-  const { url, title, link_id } = req.body;
+  const link_id = req.params.link_id;
+  const { url, title } = req.body;
 
   try {
     await Link.updateLink(url, title, link_id);
