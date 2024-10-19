@@ -6,5 +6,7 @@ exports.createTheme = async (req, res) => {
   try {
     await Theme.createTheme(title, description, img_url, user_id);
     res.status(201).json({ message: "Theme created" });
-  } catch (error) {}
+  } catch (error) {
+    res.status(500).json({ error: "Failed to create theme" });
+  }
 };
