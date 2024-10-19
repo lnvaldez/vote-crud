@@ -13,4 +13,11 @@ exports.createUser = async (username, email, password) => {
   }
 };
 
-exports.verifyUser = async (email, password) => {};
+exports.verifyUser = async (email, password) => {
+  try {
+    const query = "SELECT * FROM users WHERE email = ?";
+    const [result] = await pool.execute(query, email);
+
+    const user = result[0];
+  } catch (error) {}
+};
