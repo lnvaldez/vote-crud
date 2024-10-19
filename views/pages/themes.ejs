@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themes</title>
+</head>
+<body>
+    <h1>Themes</h1>
+    <div>
+        <% themes.forEach(theme => { %>
+            <div class="theme-card">
+                <img src="<%= theme.img_url %>" alt="<%= theme.title %>"
+                <h2><%= theme.title %></h2>
+                <p><%= theme.description %></p>
+                <p>Votes: <%= theme.vote_count %></p>
+                <form action="/themes/vote/<%= theme.id %>" method="PUT">
+                    <button type="submit">Vote</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
