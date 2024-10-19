@@ -10,3 +10,14 @@ exports.addLink = async (req, res) => {
     res.status(500).json({ error: "Failed to add link" });
   }
 };
+
+exports.deleteLink = async (req, res) => {
+  const id = req.params.id;
+
+  try {
+    await Link.deleteLink(id);
+    res.status(201).json({ message: "Link deleted" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete link" });
+  }
+};
