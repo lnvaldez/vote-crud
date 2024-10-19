@@ -9,6 +9,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 6000;
 
+app.set("view engine", "ejs");
+
 app.use(express.json());
 
 app.use("/themes", themeRoutes);
