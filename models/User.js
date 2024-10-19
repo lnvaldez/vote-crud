@@ -12,3 +12,5 @@ exports.createUser = async (username, email, password) => {
     console.error("Failed to create user");
   }
 };
+
+exports.verifyUser = async (email, password) => {};
