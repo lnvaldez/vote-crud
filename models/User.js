@@ -29,5 +29,9 @@ exports.verifyUser = async (email, password) => {
     if (!valid) {
       console.log("Invalid password");
     }
-  } catch (error) {}
+
+    return valid;
+  } catch (error) {
+    console.error("Failed to verify user");
+  }
 };
