@@ -10,3 +10,14 @@ exports.addLink = async (url, title, theme_id) => {
     console.error("Failed to add link: ", error);
   }
 };
+
+exports.deleteLink = async (id) => {
+  const query = "DELETE FROM links WHERE id = ?";
+
+  try {
+    await pool.execute(query, [id]);
+    console.log("Link deleted");
+  } catch (error) {
+    console.error("Failed to delete link: ", error);
+  }
+};
