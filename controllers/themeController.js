@@ -21,7 +21,8 @@ exports.getAllThemes = async (req, res) => {
 };
 
 exports.updateTheme = async (req, res) => {
-  const { title, description, img_url, theme_id } = req.body;
+  const theme_id = req.params.theme_id;
+  const { title, description, img_url } = req.body;
 
   try {
     await Theme.updateTheme(title, description, img_url, theme_id);
