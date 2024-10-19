@@ -11,3 +11,14 @@ exports.createTheme = async (title, description, img_url, user_id) => {
     console.error("Failed to create theme");
   }
 };
+
+exports.deleteTheme = async (id) => {
+  const query = "DELETE FROM themes WHERE id = ?";
+
+  try {
+    await pool.execute(query, [id]);
+    console.log("Theme deleted");
+  } catch (error) {
+    console.error("Failed to delete theme");
+  }
+};
