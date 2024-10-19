@@ -36,6 +36,17 @@ exports.updateTheme = async (title, description, img_url, theme_id) => {
   }
 };
 
+exports.voteForTheme = async (theme_id) => {
+  const query = "UPDATE themes SET vote_count = vote_count + 1 WHERE id = ?";
+
+  try {
+    await pool.execute(query, [theme_id]);
+    console.log("Vote made");
+  } catch (error) {
+    console.error("Failed to make vote");
+  }
+};
+
 exports.deleteTheme = async (id) => {
   const query = "DELETE FROM themes WHERE id = ?";
 
