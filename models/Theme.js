@@ -12,6 +12,17 @@ exports.createTheme = async (title, description, img_url, user_id) => {
   }
 };
 
+exports.getAllThemes = async () => {
+  const query = "SELECT * FROM themes";
+
+  try {
+    const [result] = await pool.execute(query);
+    console.log("Fetched all themes");
+  } catch (error) {
+    console.error("Failed to fetch all themes");
+  }
+};
+
 exports.deleteTheme = async (id) => {
   const query = "DELETE FROM themes WHERE id = ?";
 
