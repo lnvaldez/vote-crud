@@ -32,6 +32,7 @@ exports.verifyUser = async (email, password) => {
       return false;
     }
 
+    console.log("User verified");
     return true;
   } catch (error) {
     console.error("Failed to verify user");
