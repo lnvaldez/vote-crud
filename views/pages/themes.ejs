@@ -14,7 +14,7 @@
                 <h2><%= theme.title %></h2>
                 <p><%= theme.description %></p>
                 <p>Votes: <%= theme.vote_count %></p>
-                <form action="/themes/vote/<%= theme.id %>" method="PUT">
+                <form action="/themes/<%= theme.id %>/vote" method="POST">
                     <button type="submit">Vote</button>
                 </form>
             </div>
