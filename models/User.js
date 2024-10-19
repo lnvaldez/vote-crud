@@ -19,5 +19,9 @@ exports.verifyUser = async (email, password) => {
     const [result] = await pool.execute(query, email);
 
     const user = result[0];
+
+    if (!user) {
+      console.log("User not found");
+    }
   } catch (error) {}
 };
