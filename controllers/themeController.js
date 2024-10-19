@@ -31,6 +31,17 @@ exports.updateTheme = async (req, res) => {
   }
 };
 
+exports.voteForTheme = async (req, res) => {
+  const theme_id = req.params.theme_id;
+
+  try {
+    await Theme.voteForTheme(theme_id);
+    res.status(200).json({ message: "Vote made" });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to make vote" });
+  }
+};
+
 exports.deleteTheme = async (req, res) => {
   const id = req.params.id;
 
