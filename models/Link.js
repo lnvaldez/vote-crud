@@ -34,6 +34,17 @@ exports.updateLink = async (url, title, link_id) => {
   }
 };
 
+exports.voteForLink = async (link_id) => {
+  const query = "UPDATE links SET vote_count = vote_count + 1 WHERE id = ?";
+
+  try {
+    await pool.execute(query, [link_id]);
+    console.log("Vote made");
+  } catch (error) {
+    console.error("Failed to make vote");
+  }
+};
+
 exports.deleteLink = async (id) => {
   const query = "DELETE FROM links WHERE id = ?";
 
