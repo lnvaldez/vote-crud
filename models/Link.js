@@ -28,7 +28,7 @@ exports.updateLink = async (url, title, link_id) => {
 
   try {
     await pool.execute(query, [url, title, link_id]);
-    console.log("Updated link");
+    console.log("Link updated");
   } catch (error) {
     console.error("Failed to update link");
   }
