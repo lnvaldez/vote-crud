@@ -10,3 +10,5 @@ exports.createUser = async (req, res) => {
     res.status(500).json({ error: "Failed to create user" });
   }
 };
+
+exports.verifyUser = async (req, res) => {};
