@@ -16,7 +16,7 @@ exports.deleteLink = async (req, res) => {
 
   try {
     await Link.deleteLink(id);
-    res.status(201).json({ message: "Link deleted" });
+    res.status(204);
   } catch (error) {
     res.status(500).json({ error: "Failed to delete link" });
   }
