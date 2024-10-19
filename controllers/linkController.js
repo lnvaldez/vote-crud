@@ -34,6 +34,17 @@ exports.updateLink = async (req, res) => {
   }
 };
 
+exports.voteForLink = async (req, res) => {
+  const link_id = req.params.id;
+
+  try {
+    await Link.voteForLink(link_id);
+    return res.status(200).json({ message: "Vote made" });
+  } catch (error) {
+    return res.status(500).json({ error: "Failed to make vote" });
+  }
+};
+
 exports.deleteLink = async (req, res) => {
   const id = req.params.id;
 
