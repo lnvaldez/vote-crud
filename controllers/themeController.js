@@ -13,8 +13,8 @@ exports.createTheme = async (req, res) => {
 
 exports.getAllThemes = async (req, res) => {
   try {
-    const result = await Theme.getAllThemes();
-    res.status(201).json(result);
+    const themes = await Theme.getAllThemes();
+    res.render("pages/themes", { themes });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch all themes" });
   }
