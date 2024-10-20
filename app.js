@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cookieParser = require("cookie-parser");
 const themeRoutes = require("./routes/themeRoutes");
 const linkRoutes = require("./routes/linkRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -12,8 +13,8 @@ const PORT = process.env.PORT || 6000;
 app.set("view engine", "ejs");
 
 app.use(express.json());
-
 app.use(express.static("public"));
+app.use(cookieParser());
 
 app.use("/themes", themeRoutes);
 app.use("/links", linkRoutes);
