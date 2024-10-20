@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res) => {
   const { username, email, password } = req.body;
@@ -15,11 +16,12 @@ exports.login = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const result = await User.verifyUser(email, password);
+    const userId = await User.verifyUser(email, password);
 
-    if (!result) {
+    if (!userId) {
       return res.status(401).json({ error: "User not found" });
     }
+
     return res.status(200).json({ message: "User verified" });
   } catch (error) {
     return res.status(500).json({ error: "Failed to verify user" });
