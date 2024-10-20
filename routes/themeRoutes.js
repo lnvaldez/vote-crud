@@ -12,7 +12,7 @@ router.get("/", controller.getAllThemes);
 router.get("/create", requireAuth, controller.renderCreateTheme);
 router.post("/create", requireAuth, controller.createTheme);
 
-// router.get("/my-themes", requireAuth, controller.getMyThemes);
+router.get("/my-themes", requireAuth, controller.getUserThemes);
 // router.get("/edit/:id", requireAuth, controller.renderEditPage);
 // router.post("/edit/:id", requireAuth, controller.updateTheme);
 // router.post("/delete/:id", requireAuth, controller.deleteTheme);
