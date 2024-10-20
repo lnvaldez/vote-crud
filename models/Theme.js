@@ -24,6 +24,17 @@ exports.getAllThemes = async () => {
   }
 };
 
+exports.getUserThemes = async (user_id) => {
+  const query = "SELECT * FROM themes WHERE id = ? ORDER BY vote_count DESC";
+
+  try {
+    const [result] = await pool.execute(query, [user_id]);
+    console.log("Fetched theme");
+  } catch (error) {
+    console.error("Failed to fetch theme");
+  }
+};
+
 exports.updateTheme = async (title, description, img_url, theme_id) => {
   const query =
     "UPDATE themes SET title = ?, description = ?, img_url = ? WHERE id = ?";
