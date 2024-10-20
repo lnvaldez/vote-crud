@@ -19,6 +19,10 @@ exports.register = async (req, res) => {
   }
 };
 
+exports.renderLoginPage = (req, res) => {
+  res.render("pages/login");
+};
+
 exports.login = async (req, res) => {
   const { email, password } = req.body;
 
