@@ -25,11 +25,13 @@ exports.getAllThemes = async () => {
 };
 
 exports.getUserThemes = async (user_id) => {
-  const query = "SELECT * FROM themes WHERE id = ? ORDER BY vote_count DESC";
+  const query =
+    "SELECT * FROM themes WHERE user_id = ? ORDER BY vote_count DESC";
 
   try {
     const [result] = await pool.execute(query, [user_id]);
     console.log("Fetched theme");
+    return result;
   } catch (error) {
     console.error("Failed to fetch themes");
   }
