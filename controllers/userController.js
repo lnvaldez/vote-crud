@@ -22,6 +22,10 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: "Invalid email or password" });
     }
 
+    const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
+      expiresIn: "1h",
+    });
+
     return res.status(200).json({ message: "User verified" });
   } catch (error) {
     return res.status(500).json({ error: "Failed to verify user" });
