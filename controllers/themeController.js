@@ -24,6 +24,15 @@ exports.getAllThemes = async (req, res) => {
   }
 };
 
+exports.getUserThemes = async (req, res) => {
+  try {
+    const theme = await Theme.getTheme();
+    res.render("pages/my-themes", { theme });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch theme" });
+  }
+};
+
 exports.updateTheme = async (req, res) => {
   const theme_id = req.params.theme_id;
   const { title, description, img_url } = req.body;
