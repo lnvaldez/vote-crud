@@ -31,7 +31,7 @@ exports.getUserThemes = async (user_id) => {
     const [result] = await pool.execute(query, [user_id]);
     console.log("Fetched theme");
   } catch (error) {
-    console.error("Failed to fetch theme");
+    console.error("Failed to fetch themes");
   }
 };
 
