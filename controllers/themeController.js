@@ -33,6 +33,16 @@ exports.getUserThemes = async (req, res) => {
   }
 };
 
+exports.getTheme = async (req, res) => {
+  const id = req.params.id;
+  try {
+    const links = await Theme.getLinks(id);
+    res.render("pages/theme-view", { links });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch links" });
+  }
+};
+
 exports.updateTheme = async (req, res) => {
   const theme_id = req.params.theme_id;
   const { title, description, img_url } = req.body;
