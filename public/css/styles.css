@@ -69,3 +69,7 @@ h1 {
 .theme-card form button:hover {
   background-color: #0056b3;
 }
+
+.theme-card a {
+  text-decoration: none;
+}
