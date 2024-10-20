@@ -37,6 +37,18 @@ exports.getUserThemes = async (user_id) => {
   }
 };
 
+exports.getLinks = async (theme_id) => {
+  const query = "SELECT * FROM links WHERE theme_id = ?";
+
+  try {
+    const [result] = await pool.execute(query, [theme_id]);
+    console.log("Fetched all theme links");
+    return result;
+  } catch (error) {
+    console.error("Failed to fetch all theme links");
+  }
+};
+
 exports.updateTheme = async (title, description, img_url, theme_id) => {
   const query =
     "UPDATE themes SET title = ?, description = ?, img_url = ? WHERE id = ?";
