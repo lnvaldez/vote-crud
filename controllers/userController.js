@@ -39,7 +39,8 @@ exports.login = async (req, res) => {
     });
 
     res.cookie("token", token, { httpOnly: true, maxAge: 3600000 });
-    return res.status(200).json({ message: "User verified" });
+    res.redirect("/themes");
+    // return res.status(200).json({ message: "User verified" });
   } catch (error) {
     return res.status(500).json({ error: "Failed to verify user" });
   }
