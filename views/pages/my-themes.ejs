@@ -14,11 +14,15 @@
                 <a href="/theme/<%- theme.id %>">
                     <img src="<%= theme.img_url %>" alt="<%= theme.title %>"
                     <h2><%= theme.title %></h2>
-                    <p><%= theme.description %></p>
                 </a>
-                <form action="/themes/<%= theme.id %>/vote" method="POST">
-                    <button type="submit">⭐ <%= theme.vote_count %></button>
-                </form>
+                <div>
+                    <form>
+                        <button type="submit">Delete</button>
+                    </form>
+                    <form>
+                        <button type="submit">Edit</button>
+                    </form>
+                </div>
             </div>
         <% }) %>
     </div>
