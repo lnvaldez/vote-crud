@@ -11,9 +11,11 @@
     <div class="wrapper">
         <% themes.forEach(theme => { %>
             <div class="theme-card">
-                <img src="<%= theme.img_url %>" alt="<%= theme.title %>"
-                <h2><%= theme.title %></h2>
-                <p><%= theme.description %></p>
+                <a href="/theme/<%- theme.id %>">
+                    <img src="<%= theme.img_url %>" alt="<%= theme.title %>"
+                    <h2><%= theme.title %></h2>
+                    <p><%= theme.description %></p>
+                </a>
                 <p>Votes: <%= theme.vote_count %></p>
                 <form action="/themes/<%= theme.id %>/vote" method="POST">
                     <button type="submit">Vote</button>
