@@ -5,16 +5,18 @@ dotenv.config();
 
 exports.auth = (req, res, next) => {
   const token = req.cookies.token;
-
-  if (!token) {
-    return res.status(401).json({ message: "Not authorized" });
+  if (token) {
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      req.user = { id: decoded.id };
+      res.locals.user = req.user;
+    } catch (error) {
+      req.user = null;
+      res.locals.user = null;
+    }
+  } else {
+    req.user = null;
+    res.locals.user = null;
   }
-
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user_id = decoded.id;
-    next();
-  } catch (error) {
-    return res.status(401).json({ message: "Invalid token" });
-  }
+  next();
 };
