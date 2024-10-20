@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const themeRoutes = require("./routes/themeRoutes");
 const linkRoutes = require("./routes/linkRoutes");
 const userRoutes = require("./routes/userRoutes");
+const { auth } = require("./middleware/auth");
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use(express.json());
 app.use(express.static("public"));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(auth);
 
 app.use("/themes", themeRoutes);
 app.use("/links", linkRoutes);
