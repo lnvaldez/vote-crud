@@ -4,7 +4,6 @@ const controller = require("../controllers/linkController");
 const router = express.Router();
 
 router.post("/", controller.addLink);
-router.get("/:theme_id", controller.getThemeLinks);
 router.put("/:link_id", controller.updateLink);
 router.put("/vote/:link_id", controller.voteForLink);
 router.delete("/:id", controller.deleteLink);
