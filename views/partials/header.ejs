@@ -6,8 +6,11 @@
     <li><a href="/themes/my-themes">📚 My Themes</a></li>
   </ul>
   <ul class="user">
+    <% if (!locals.user) { %>
     <li><a href="/users/register">Register</a></li>
     <li><a href="/users/login">Login</a></li>
+    <% } else { %>
     <li><a href="/users/logout">Logout</a></li>
+    <% } %>
   </ul>
 </nav>
