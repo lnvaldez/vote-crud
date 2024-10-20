@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Public routes
 router.get("/", controller.getAllThemes);
-// router.get("/view/:id", controller.getTheme);
+router.get("/view/:id", controller.getTheme);
 
 // Protected routes
 router.get("/create", requireAuth, controller.renderCreateTheme);
