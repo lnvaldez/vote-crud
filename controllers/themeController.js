@@ -1,7 +1,7 @@
 const Theme = require("../models/Theme");
 
 exports.renderCreateTheme = async (req, res) => {
-  res.render("pages/create");
+  res.render("pages/theme-create");
 };
 
 exports.createTheme = async (req, res) => {
