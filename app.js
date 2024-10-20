@@ -13,6 +13,8 @@ app.set("view engine", "ejs");
 
 app.use(express.json());
 
+app.use(express.static("public"));
+
 app.use("/themes", themeRoutes);
 app.use("/links", linkRoutes);
 app.use("/users", userRoutes);
