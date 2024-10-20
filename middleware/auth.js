@@ -1,4 +1,7 @@
 const jwt = require("jsonwebtoken");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 exports.auth = (req, res, next) => {
   const token = req.cookies.token;
@@ -9,5 +12,7 @@ exports.auth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user_id = decoded.id;
+    next();
   } catch (error) {}
 };
