@@ -12,17 +12,6 @@ exports.addLink = async (req, res) => {
   }
 };
 
-exports.getThemeLinks = async (req, res) => {
-  const theme_id = req.params.theme_id;
-
-  try {
-    const result = await Link.getThemeLinks(theme_id);
-    return res.status(201).json(result);
-  } catch (error) {
-    return res.status(500).json({ error: "Failed to fetch all theme links" });
-  }
-};
-
 exports.updateLink = async (req, res) => {
   const link_id = req.params.link_id;
   const { url, title } = req.body;
