@@ -10,8 +10,7 @@
     <header><%- include("../partials/header"); %></header>
     <div class="wrapper">
       <% links.forEach(link => { %>
-      <p><%= link.url %></p>
-      <p><%= link.title %></p>
+      <a href="<%= link.url %>"><%= link.title %></a>
       <% }) %>
     </div>
   </body>
