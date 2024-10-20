@@ -4,7 +4,7 @@ const { requireAuth } = require("../middleware/auth");
 
 const router = express.Router();
 
-router.get("/", requireAuth, controller.getAllThemes);
+router.get("/", controller.getAllThemes);
 
 router.get("/create", requireAuth, controller.renderCreateTheme);
 router.post("/", requireAuth, controller.createTheme);
