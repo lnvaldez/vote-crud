@@ -4,6 +4,10 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
+exports.renderRegisterPage = (req, res) => {
+  res.render("pages/register");
+};
+
 exports.register = async (req, res) => {
   const { username, email, password } = req.body;
 
