@@ -19,7 +19,7 @@ exports.login = async (req, res) => {
     const userId = await User.verifyUser(email, password);
 
     if (!userId) {
-      return res.status(401).json({ error: "Invalid email or password" });
+      return res.status(400).json({ error: "Invalid email or password" });
     }
 
     return res.status(200).json({ message: "User verified" });
