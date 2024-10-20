@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Themes</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
     <h1>Themes</h1>
-    <div>
+    <div class="wrapper">
         <% themes.forEach(theme => { %>
             <div class="theme-card">
                 <img src="<%= theme.img_url %>" alt="<%= theme.title %>"
