@@ -39,7 +39,6 @@ exports.getUserThemes = async (user_id) => {
 
 exports.getTheme = async (title, user_id) => {
   const query = "SELECT * FROM themes WHERE title = ? AND user_id = ?";
-  console.log(title, user_id);
 
   try {
     const [result] = await pool.execute(query, [title, user_id]);
