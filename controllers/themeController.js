@@ -1,4 +1,5 @@
 const Theme = require("../models/Theme");
+const Link = require("../models/Link");
 
 exports.renderCreateTheme = async (req, res) => {
   res.render("pages/theme-create");
@@ -76,9 +77,10 @@ exports.deleteTheme = async (req, res) => {
   const id = req.params.id;
 
   try {
+    await Link.clearLinks(id);
     await Theme.deleteTheme(id);
     res.redirect("/themes/my-themes");
   } catch (error) {
-    res.status(500).json({ error: "Failed to delete theme", error });
+    res.status(500).json({ error: "Failed to delete theme" });
   }
 };
