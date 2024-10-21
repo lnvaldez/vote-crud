@@ -43,3 +43,14 @@ exports.deleteLink = async (id) => {
     console.error("Failed to delete link: ", error);
   }
 };
+
+exports.clearLinks = async (theme_id) => {
+  const query = "DELETE FROM links WHERE theme_id = ?";
+
+  try {
+    await pool.execute(query, [theme_id]);
+    console.log("Links from theme deleted");
+  } catch (error) {
+    console.error("Failed to delete links from theme");
+  }
+};
