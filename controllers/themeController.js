@@ -7,7 +7,13 @@ exports.renderCreateTheme = async (req, res) => {
 
 exports.renderEditPage = async (req, res) => {
   const theme_id = req.params.id;
-  res.render("pages/theme-edit", { id: theme_id });
+
+  try {
+    const links = await Theme.getLinks(theme_id);
+    res.render("pages/theme-edit", { id: theme_id, links: links });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to render edit page" });
+  }
 };
 
 exports.createTheme = async (req, res) => {
