@@ -5,7 +5,8 @@ exports.renderCreateTheme = async (req, res) => {
 };
 
 exports.renderEditPage = async (req, res) => {
-  res.render("pages/theme-edit");
+  const theme_id = req.params.id;
+  res.render("pages/theme-edit", { id: theme_id });
 };
 
 exports.createTheme = async (req, res) => {
@@ -78,6 +79,6 @@ exports.deleteTheme = async (req, res) => {
     await Theme.deleteTheme(id);
     res.redirect("/themes/my-themes");
   } catch (error) {
-    res.status(500).json({ error: "Failed to delete theme" });
+    res.status(500).json({ error: "Failed to delete theme", error });
   }
 };
