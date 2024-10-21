@@ -71,7 +71,7 @@ exports.deleteTheme = async (req, res) => {
 
   try {
     await Theme.deleteTheme(id);
-    res.status(204).send();
+    res.redirect("/themes/my-themes");
   } catch (error) {
     res.status(500).json({ error: "Failed to delete theme" });
   }
