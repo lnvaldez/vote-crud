@@ -8,7 +8,7 @@
   <body>
     <header><%- include("../partials/header"); %></header>
 
-    <form>
+    <form action="/themes/edit/<%= id %>" method="POST">
       <label for="title">New Title: </label>
       <input type="text" id="title" name="title" required />
 
