@@ -51,12 +51,12 @@ exports.getTheme = async (req, res) => {
 };
 
 exports.updateTheme = async (req, res) => {
-  const theme_id = req.params.theme_id;
+  const theme_id = req.params.id;
   const { title, description, img_url } = req.body;
 
   try {
     await Theme.updateTheme(title, description, img_url, theme_id);
-    res.status(200).json({ message: "Theme updated" });
+    res.redirect("/themes/my-themes");
   } catch (error) {
     res.status(500).json({ error: "Failed to update theme" });
   }
