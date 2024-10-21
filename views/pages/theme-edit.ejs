@@ -32,5 +32,17 @@
 
       <button type="submit">Add Link</button>
     </form>
+
+    <div class="wrapper">
+      <% links.forEach(link => { %>
+      <a href="<%= link.url %>"><%= link.title %></a>
+      <form>
+        <button>Edit</button>
+      </form>
+      <form action="/links/delete/<%= link.id %>" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+      <% }); %>
+    </div>
   </body>
 </html>
