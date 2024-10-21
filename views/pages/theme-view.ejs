@@ -11,6 +11,9 @@
     <div class="wrapper">
       <% links.forEach(link => { %>
       <a href="<%= link.url %>"><%= link.title %></a>
+      <form action="/links/<%= link.id %>/vote" method="POST">
+        <button type="submit"><%= link.vote_count %></button>
+      </form>
       <% }) %>
     </div>
   </body>
