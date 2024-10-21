@@ -14,7 +14,7 @@ router.post("/create", requireAuth, controller.createTheme);
 
 router.get("/my-themes", requireAuth, controller.getUserThemes);
 router.get("/edit/:id", requireAuth, controller.renderEditPage);
-// router.post("/edit/:id", requireAuth, controller.updateTheme);
+router.post("/edit/:id", requireAuth, controller.updateTheme);
 router.post("/delete/:id", requireAuth, controller.deleteTheme);
 
 router.post("/:theme_id/vote", requireAuth, controller.voteForTheme);
