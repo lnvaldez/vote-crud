@@ -4,12 +4,17 @@ exports.renderCreateTheme = async (req, res) => {
   res.render("pages/theme-create");
 };
 
+exports.renderEditPage = async (req, res) => {
+  res.render("pages/theme-edit");
+};
+
 exports.createTheme = async (req, res) => {
   const { title, description, img_url, user_id } = req.body;
 
   try {
     await Theme.createTheme(title, description, img_url, user_id);
-    res.status(201).json({ message: "Theme created" });
+    const id = await Theme.getTheme(title, user_id);
+    res.redirect(`/themes/edit/${id}`);
   } catch (error) {
     res.status(500).json({ error: "Failed to create theme" });
   }
