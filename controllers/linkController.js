@@ -38,10 +38,11 @@ exports.voteForLink = async (req, res) => {
 
 exports.deleteLink = async (req, res) => {
   const id = req.params.id;
+  const backUrl = req.header("Referer");
 
   try {
     await Link.deleteLink(id);
-    res.status(204).send();
+    res.redirect(backUrl);
   } catch (error) {
     res.status(500).json({ error: "Failed to delete link" });
   }
