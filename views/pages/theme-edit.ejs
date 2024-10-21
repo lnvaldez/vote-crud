@@ -21,15 +21,15 @@
       <button type="submit">Update Theme</button>
     </form>
 
-    <form>
-      <label for="title">Link URL: </label>
-      <input type="text" id="title" name="title" required />
+    <form action="/links/add" method="POST">
+      <label for="url">Link URL: </label>
+      <input type="url" id="link_url" name="url" required />
 
-      <label for="description">Link Title: </label>
-      <input type="text" id="description" name="description" required />
+      <label for="title">Link Title: </label>
+      <input type="text" id="link_title" name="title" required />
 
-      <label for="img_url">Link Description:</label>
-      <input type="url" id="img_url" name="img_url" required />
+      <p><%= id %></p>
+      <input type="hidden" name="theme_id" value="<%= id %>" />
 
       <button type="submit">Add Link</button>
     </form>
