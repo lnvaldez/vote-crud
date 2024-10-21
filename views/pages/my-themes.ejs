@@ -16,7 +16,7 @@
                     <h2><%= theme.title %></h2>
                 </a>
                 <div>
-                    <form>
+                    <form action="/themes/delete/<%= theme.id %>" method="POST">
                         <button type="submit">Delete</button>
                     </form>
                     <form>
