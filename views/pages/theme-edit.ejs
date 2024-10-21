@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create</title>
+  </head>
+  <body>
+    <header><%- include("../partials/header"); %></header>
+
+    <form>
+      <label for="title">New Title: </label>
+      <input type="text" id="title" name="title" required />
+
+      <label for="description">New Description: </label>
+      <input type="text" id="description" name="description" required />
+
+      <label for="img_url">New Image URL:</label>
+      <input type="url" id="img_url" name="img_url" required />
+
+      <button type="submit">Update Theme</button>
+    </form>
+
+    <form>
+      <label for="title">Link URL: </label>
+      <input type="text" id="title" name="title" required />
+
+      <label for="description">Link Title: </label>
+      <input type="text" id="description" name="description" required />
+
+      <label for="img_url">Link Description:</label>
+      <input type="url" id="img_url" name="img_url" required />
+
+      <button type="submit">Add Link</button>
+    </form>
+  </body>
+</html>
