@@ -26,10 +26,11 @@ exports.updateLink = async (req, res) => {
 
 exports.voteForLink = async (req, res) => {
   const link_id = req.params.link_id;
+  const backUrl = req.header("Referer");
 
   try {
     await Link.voteForLink(link_id);
-    return res.status(200).json({ message: "Vote made" });
+    res.redirect(backUrl);
   } catch (error) {
     return res.status(500).json({ error: "Failed to make vote" });
   }
