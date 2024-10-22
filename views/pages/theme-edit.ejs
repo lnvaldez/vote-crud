@@ -7,47 +7,66 @@
   </head>
   <body>
     <header><%- include("../partials/header"); %></header>
+    <div class="wrapper">
+      <div class="form-container">
+        <h2>Edit Theme</h2>
+        <form action="/themes/edit/<%= id %>" method="POST">
+          <label for="title">New Title: </label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%= theme.title %>"
+            required
+          />
+          <label for="description">New Description: </label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value="<%= theme.description %>"
+            required
+          />
+          <label for="img_url">New Image URL:</label>
+          <input
+            type="url"
+            id="img_url"
+            name="img_url"
+            value="<%= theme.img_url %>"
+            required
+          />
+          <button type="submit">Update Theme</button>
+        </form>
+      </div>
+      <div class="form-container">
+        <h2>Add Link</h2>
+        <form action="/links/add" method="POST">
+          <label for="url">Link URL: </label>
+          <input type="url" id="link_url" name="url" required />
+          <label for="title">Link Title: </label>
+          <input type="text" id="link_title" name="title" required />
+          <input type="hidden" name="theme_id" value="<%= id %>" />
+          <button type="submit">Add Link</button>
+        </form>
+      </div>
+    </div>
 
-    <form action="/themes/edit/<%= id %>" method="POST">
-      <label for="title">New Title: </label>
-      <input type="text" id="title" name="title" required />
-
-      <label for="description">New Description: </label>
-      <input type="text" id="description" name="description" required />
-
-      <label for="img_url">New Image URL:</label>
-      <input type="url" id="img_url" name="img_url" required />
-
-      <button type="submit">Update Theme</button>
-    </form>
-
-    <form action="/links/add" method="POST">
-      <label for="url">Link URL: </label>
-      <input type="url" id="link_url" name="url" required />
-
-      <label for="title">Link Title: </label>
-      <input type="text" id="link_title" name="title" required />
-
-      <input type="hidden" name="theme_id" value="<%= id %>" />
-
-      <button type="submit">Add Link</button>
-    </form>
-
+    <h2>Theme Links</h2>
     <div class="wrapper">
       <% links.forEach(link => { %>
-      <a href="<%= link.url %>"><%= link.title %></a>
-      <form action="/links/edit/<%= link.id %>" method="POST">
-        <label for="url">New Url: </label>
-        <input type="url" id="link_url" name="url" required />
-
-        <label for="title">New Title: </label>
-        <input type="text" id="link_title" name="title" required />
-
-        <button type="submit">Edit</button>
-      </form>
-      <form action="/links/delete/<%= link.id %>" method="POST">
-        <button type="submit">Delete</button>
-      </form>
+      <div class="form-container">
+        <form action="/links/edit/<%= link.id %>" method="POST">
+          <a href="<%= link.url %>"><%= link.title %></a>
+          <label for="url">New Url: </label>
+          <input type="url" id="link_url" name="url" required />
+          <label for="title">New Title: </label>
+          <input type="text" id="link_title" name="title" required />
+          <button type="submit">Edit</button>
+        </form>
+        <form action="/links/delete/<%= link.id %>" method="POST">
+          <button type="submit">Delete</button>
+        </form>
+      </div>
       <% }); %>
     </div>
   </body>
