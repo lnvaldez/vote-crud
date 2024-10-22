@@ -51,6 +51,7 @@ h1 {
   margin-bottom: 15px;
 
   display: -webkit-box;
+  line-clamp: 1;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
