@@ -49,6 +49,14 @@ h1 {
   font-size: 0.95em;
   color: #666;
   margin-bottom: 15px;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 4.5em;
+  line-height: 1.5em;
 }
 
 .theme-card form button {
