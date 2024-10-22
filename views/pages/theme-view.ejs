@@ -8,8 +8,9 @@
   </head>
   <body>
     <header><%- include("../partials/header"); %></header>
+    <% if (theme && links.length > 0) { %>
     <div class="form-container">
-      <p><%= theme.description %></p>
+      <p class="theme-description"><%= theme.description %></p>
       <div class="link-container">
         <% links.forEach(link => { %>
         <div class="link-item">
@@ -23,5 +24,8 @@
         <% }) %>
       </div>
     </div>
+    <% } else { %>
+    <p class="no-links">No links yet...</p>
+    <% } %>
   </body>
 </html>
