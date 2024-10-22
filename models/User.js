@@ -40,14 +40,15 @@ exports.verifyUser = async (email, password) => {
   }
 };
 
-exports.getUserById = async (id) => {
+exports.getUserByThemeUserId = async (id) => {
   try {
-    const query = "SELECT * FROM users WHERE id = ?";
-    const [result] = await pool.execute(query, [id]);
+    const getUserId = "SELECT user_id FROM themes WHERE id = ?";
+    const [user_id] = await pool.execute(getUserId, [id]);
 
-    const user = result[0];
+    const getUser = "SELECT * FROM users WHERE id = ?";
+    const [result] = await pool.execute(getUser, [user_id[0].user_id]);
 
-    return user;
+    return result[0];
   } catch (error) {
     console.error("Failed to find user by ID");
   }
