@@ -39,3 +39,16 @@ exports.verifyUser = async (email, password) => {
     console.error("Failed to verify user");
   }
 };
+
+exports.getUserById = async (id) => {
+  try {
+    const query = "SELECT * FROM users WHERE id = ?";
+    const [result] = await pool.execute(query, [id]);
+
+    const user = result[0];
+
+    return user;
+  } catch (error) {
+    console.error("Failed to find user by ID");
+  }
+};
