@@ -3,10 +3,11 @@ const { link } = require("../routes/themeRoutes");
 
 exports.addLink = async (req, res) => {
   const { url, title, theme_id } = req.body;
+  const backUrl = req.header("Referer");
 
   try {
     await Link.addLink(url, title, theme_id);
-    res.status(201).json({ message: "Link added" });
+    res.redirect(backUrl);
   } catch (error) {
     res.status(500).json({ error: "Failed to add link" });
   }
@@ -15,10 +16,11 @@ exports.addLink = async (req, res) => {
 exports.updateLink = async (req, res) => {
   const link_id = req.params.link_id;
   const { url, title } = req.body;
+  const backUrl = req.header("Referer");
 
   try {
     await Link.updateLink(url, title, link_id);
-    return res.status(200).json({ message: "Link updated" });
+    res.redirect(backUrl);
   } catch (error) {
     return res.status(500).json({ error: "Failed to update link" });
   }
