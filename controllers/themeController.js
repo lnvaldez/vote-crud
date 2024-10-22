@@ -55,7 +55,8 @@ exports.getTheme = async (req, res) => {
   const id = req.params.id;
   try {
     const links = await Theme.getLinks(id);
-    res.render("pages/theme-view", { links });
+    const theme = await Theme.getThemeById(id);
+    res.render("pages/theme-view", { theme, links });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch links" });
   }
