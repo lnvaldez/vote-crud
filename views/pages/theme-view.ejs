@@ -10,21 +10,30 @@
     <header><%- include("../partials/header"); %></header>
     <% if (theme && links.length > 0) { %>
     <div class="form-container">
+      <h3>Author: <%= user.username %></h3>
+      <br />
       <p class="theme-description"><%= theme.description %></p>
-      <div class="link-container">
-        <% links.forEach(link => { %>
-        <div class="link-item">
-          <div class="link-dots">
-            <a href="<%= link.url %>"><%= link.title %></a>
+      <div class="form-container">
+        <div class="link-container">
+          <% links.forEach(link => { %>
+          <div class="link-item">
+            <div class="link-dots">
+              <a href="<%= link.url %>"><%= link.title %></a>
+            </div>
+            <form action="/links/<%= link.id %>/vote" method="POST">
+              <button type="submit">⭐<%= link.vote_count %></button>
+            </form>
           </div>
-          <form action="/links/<%= link.id %>/vote" method="POST">
-            <button type="submit"><%= link.vote_count %></button>
-          </form>
+          <% }) %>
         </div>
-        <% }) %>
       </div>
     </div>
     <% } else { %>
+    <div class="form-container">
+      <h3>Author: <%= user.username %></h3>
+      <br />
+      <p class="theme-description"><%= theme.description %></p>
+    </div>
     <p class="no-links">No links yet...</p>
     <% } %>
   </body>
