@@ -49,6 +49,18 @@ exports.getTheme = async (title, user_id) => {
   }
 };
 
+exports.getThemeById = async (id) => {
+  const query = "SELECT * FROM themes WHERE id = ?";
+
+  try {
+    const [result] = await pool.execute(query, [id]);
+    console.log("Fetched theme by ID");
+    return result[0];
+  } catch (error) {
+    console.error("Failed to fetch theme by ID");
+  }
+};
+
 exports.getLinks = async (theme_id) => {
   const query = "SELECT * FROM links WHERE theme_id = ?";
 
