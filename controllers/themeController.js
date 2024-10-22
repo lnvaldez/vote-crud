@@ -9,8 +9,13 @@ exports.renderEditPage = async (req, res) => {
   const theme_id = req.params.id;
 
   try {
+    const theme = await Theme.getThemeById(theme_id);
     const links = await Theme.getLinks(theme_id);
-    res.render("pages/theme-edit", { id: theme_id, links: links });
+    res.render("pages/theme-edit", {
+      id: theme_id,
+      theme: theme,
+      links: links,
+    });
   } catch (error) {
     res.status(500).json({ error: "Failed to render edit page" });
   }
