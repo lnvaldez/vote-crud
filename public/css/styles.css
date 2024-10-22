@@ -17,6 +17,7 @@ h1 {
 }
 
 .wrapper {
+  padding-top: 5px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
@@ -30,6 +31,10 @@ h1 {
   width: 280px;
   padding: 20px;
   text-align: center;
+}
+
+.theme-card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.5);
 }
 
 .theme-card img {
@@ -80,7 +85,8 @@ h1 {
 }
 
 .navbar {
-  padding: 10px 10px 20px 10px;
+  padding: 10px 10px 10px 10px;
+  background-color: #e0e0e0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -107,11 +113,15 @@ h1 {
 }
 
 .navbar ul li a:hover {
-  background-color: #555;
+  background-color: #b9b9b9;
 }
 
 .crud-links {
-  justify-content: flex-start;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-grow: 2;
 }
 
 .user {
@@ -242,4 +252,15 @@ form button[type="submit"]:hover {
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 500px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
 }
