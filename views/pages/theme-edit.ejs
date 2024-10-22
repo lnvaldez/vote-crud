@@ -60,9 +60,21 @@
         <form action="/links/edit/<%= link.id %>" method="POST">
           <a href="<%= link.url %>"><%= link.title %></a>
           <label for="url">New Url: </label>
-          <input type="url" id="link_url" name="url" required />
+          <input
+            type="url"
+            id="link_url"
+            name="url"
+            value="<%= link.url %>"
+            required
+          />
           <label for="title">New Title: </label>
-          <input type="text" id="link_title" name="title" required />
+          <input
+            type="text"
+            id="link_title"
+            name="title"
+            value="<%= link.title %>"
+            required
+          />
           <button type="submit">Edit</button>
         </form>
         <form action="/links/delete/<%= link.id %>" method="POST">
