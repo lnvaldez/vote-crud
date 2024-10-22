@@ -10,6 +10,7 @@
     <div class="wrapper">
       <div class="form-container">
         <h2>Edit Theme</h2>
+        <br />
         <form action="/themes/edit/<%= id %>" method="POST">
           <label for="title">New Title: </label>
           <input
@@ -40,6 +41,7 @@
       </div>
       <div class="form-container">
         <h2>Add Link</h2>
+        <br />
         <form action="/links/add" method="POST">
           <label for="url">Link URL: </label>
           <input type="url" id="link_url" name="url" required />
