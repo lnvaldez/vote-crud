@@ -7,8 +7,8 @@ exports.createTheme = async (title, description, img_url, user_id) => {
   try {
     await pool.execute(query, [title, description, img_url, user_id]);
     console.log("Theme created");
-  } catch (_error) {
-    console.error("Failed to create theme");
+  } catch (error) {
+    console.error("Failed to create theme: ", error);
   }
 };
 
@@ -19,8 +19,8 @@ exports.getAllThemes = async () => {
     const [result] = await pool.execute(query);
     console.log("Fetched all themes");
     return result;
-  } catch (_error) {
-    console.error("Failed to fetch all themes");
+  } catch (error) {
+    console.error("Failed to fetch all themes: ", error);
   }
 };
 
@@ -32,8 +32,8 @@ exports.getUserThemes = async (user_id) => {
     const [result] = await pool.execute(query, [user_id]);
     console.log("Fetched theme");
     return result;
-  } catch (_error) {
-    console.error("Failed to fetch themes");
+  } catch (error) {
+    console.error("Failed to fetch themes: ", error);
   }
 };
 
@@ -44,8 +44,8 @@ exports.getTheme = async (title, user_id) => {
     const [result] = await pool.execute(query, [title, user_id]);
     console.log("Fetched ID");
     return result[0].id;
-  } catch (_error) {
-    console.error("Failed to fetch ID");
+  } catch (error) {
+    console.error("Failed to fetch ID: ", error);
   }
 };
 
@@ -56,8 +56,8 @@ exports.getThemeById = async (id) => {
     const [result] = await pool.execute(query, [id]);
     console.log("Fetched theme by ID");
     return result[0];
-  } catch (_error) {
-    console.error("Failed to fetch theme by ID");
+  } catch (error) {
+    console.error("Failed to fetch theme by ID: ", error);
   }
 };
 
@@ -68,8 +68,8 @@ exports.getLinks = async (theme_id) => {
     const [result] = await pool.execute(query, [theme_id]);
     console.log("Fetched all theme links");
     return result;
-  } catch (_error) {
-    console.error("Failed to fetch all theme links");
+  } catch (error) {
+    console.error("Failed to fetch all theme links: ", error);
   }
 };
 
@@ -80,8 +80,8 @@ exports.updateTheme = async (title, description, img_url, theme_id) => {
   try {
     await pool.execute(query, [title, description, img_url, theme_id]);
     console.log("Theme updated");
-  } catch (_error) {
-    console.error("Failed to update theme");
+  } catch (error) {
+    console.error("Failed to update theme: ", error);
   }
 };
 
@@ -91,8 +91,8 @@ exports.voteForTheme = async (theme_id) => {
   try {
     await pool.execute(query, [theme_id]);
     console.log("Vote made");
-  } catch (_error) {
-    console.error("Failed to make vote");
+  } catch (error) {
+    console.error("Failed to make vote: ", error);
   }
 };
 
@@ -102,7 +102,7 @@ exports.deleteTheme = async (id) => {
   try {
     await pool.execute(query, [id]);
     console.log("Theme deleted");
-  } catch (_error) {
-    console.error("Failed to delete theme");
+  } catch (error) {
+    console.error("Failed to delete theme: ", error);
   }
 };
