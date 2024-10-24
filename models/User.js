@@ -9,7 +9,7 @@ exports.createUser = async (username, email, password) => {
     await pool.execute(query, [username, email, hash]);
     console.log("User created");
   } catch (error) {
-    console.error("Failed to create user");
+    console.error("Failed to create user: ", error);
   }
 };
 
@@ -36,7 +36,7 @@ exports.verifyUser = async (email, password) => {
 
     return user.id;
   } catch (error) {
-    console.error("Failed to verify user");
+    console.error("Failed to verify user: ", error);
   }
 };
 
@@ -50,6 +50,6 @@ exports.getUserByThemeUserId = async (id) => {
 
     return result[0];
   } catch (error) {
-    console.error("Failed to find user by ID");
+    console.error("Failed to find user by ID: ", error);
   }
 };
