@@ -1,5 +1,4 @@
 const Link = require("../models/Link");
-const { link } = require("../routes/themeRoutes");
 
 exports.addLink = async (req, res) => {
   const { url, title, theme_id } = req.body;
