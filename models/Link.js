@@ -18,7 +18,7 @@ exports.updateLink = async (url, title, link_id) => {
     await pool.execute(query, [url, title, link_id]);
     console.log("Link updated");
   } catch (error) {
-    console.error("Failed to update link");
+    console.error("Failed to update link: ", error);
   }
 };
 
@@ -29,7 +29,7 @@ exports.voteForLink = async (link_id) => {
     await pool.execute(query, [link_id]);
     console.log("Vote made");
   } catch (error) {
-    console.error("Failed to make vote");
+    console.error("Failed to make vote: ", error);
   }
 };
 
@@ -51,6 +51,6 @@ exports.clearLinks = async (theme_id) => {
     await pool.execute(query, [theme_id]);
     console.log("Links from theme deleted");
   } catch (error) {
-    console.error("Failed to delete links from theme");
+    console.error("Failed to delete links from theme: ", error);
   }
 };
