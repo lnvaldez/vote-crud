@@ -8,12 +8,22 @@
   </head>
   <body>
     <div class="form-container">
+      <h2>Login to your account</h2>
+      <p>Dont' have an account? <a href="/users/register">Sign Up Free!</a></p>
       <form action="/users/login" method="POST">
         <label for="email">Email: </label>
         <input type="email" id="email" name="email" required />
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required />
+
+        <div class="login-options">
+          <div>
+            <input type="checkbox" id="session" name="session" />
+            <label for="session">Remember me</label>
+          </div>
+          <a href="/users/register" class="forgot-password">Forgot password?</a>
+        </div>
 
         <button type="submit">Login</button>
         <a href="/users/register">Create an account</a>
