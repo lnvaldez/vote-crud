@@ -22,6 +22,8 @@ h1 {
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
   justify-items: center;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .theme-card {
@@ -31,6 +33,7 @@ h1 {
   width: 280px;
   padding: 20px;
   text-align: center;
+  margin: 0;
 }
 
 .theme-card:hover {
@@ -78,6 +81,14 @@ h1 {
 
 .theme-card form button:hover {
   background-color: #0056b3;
+}
+
+.theme-card form button.delete-button {
+  background-color: #dd0000;
+}
+
+.theme-card form button.delete-button:hover {
+  background-color: #9c0101;
 }
 
 .theme-card a {
