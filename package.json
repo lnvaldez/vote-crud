@@ -19,7 +19,8 @@
     "express-ejs-layouts": "^2.5.1",
     "express-validator": "^7.2.0",
     "jsonwebtoken": "^9.0.2",
-    "mysql2": "^3.11.3"
+    "mysql2": "^3.11.3",
+    "xss-clean": "^0.1.4"
   },
   "devDependencies": {
     "nodemon": "^3.1.7"
