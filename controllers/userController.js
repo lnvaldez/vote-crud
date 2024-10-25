@@ -25,7 +25,13 @@ exports.renderLoginPage = (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, session } = req.body;
+
+  if (!session) {
+    console.log("User doesn't want to be remembered...");
+  } else {
+    console.log("Remember me...");
+  }
 
   try {
     const userId = await User.verifyUser(email, password);
