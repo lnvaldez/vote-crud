@@ -26,6 +26,20 @@ exports.getApprovedThemes = async () => {
   }
 };
 
+exports.getPendingThemes = async () => {
+  const query =
+    "SELECT * FROM themes WHERE status = ? ORDER BY created_at DESC";
+  const status = "pending";
+
+  try {
+    const [result] = await pool.execute(query, [status]);
+    console.log("Fetched all pending themes");
+    return result;
+  } catch (error) {
+    console.error("Failed to fetch all pending themes: ", error);
+  }
+};
+
 exports.getUserThemes = async (user_id) => {
   const query =
     "SELECT * FROM themes WHERE user_id = ? ORDER BY vote_count DESC";
