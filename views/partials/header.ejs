@@ -5,6 +5,7 @@
   </div>
   <ul class="crud-links">
     <% if (locals.user && locals.user.role === "admin") { %>
+    <li><a href="/themes">🎨 Themes</a></li>
     <li><a href="/admin/users">👤 Users</a></li>
     <li><a href="/admin/themes">🛠️ Themes</a></li>
     <% } else { %>
