@@ -19,4 +19,11 @@ router.get(
   controller.renderAdminUserPage
 );
 
+router.post(
+  "/approve/:id",
+  requireAuth,
+  authorizeRole("admin"),
+  controller.approveTheme
+);
+
 module.exports = router;
