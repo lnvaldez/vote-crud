@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const themeRoutes = require("./routes/themeRoutes");
 const linkRoutes = require("./routes/linkRoutes");
 const userRoutes = require("./routes/userRoutes");
+const xss = require("xss-clean");
 const { auth } = require("./middleware/auth");
 
 dotenv.config();
