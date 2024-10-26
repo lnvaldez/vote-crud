@@ -1,5 +1,6 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
+const session = require("express-session");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const themeRoutes = require("./routes/themeRoutes");
@@ -19,6 +20,14 @@ app.set("view engine", "ejs");
 
 app.use(express.json());
 app.use(express.static("public"));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { httpOnly: true, secure: process.env.NODE_ENV === "development" },
+  })
+);
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(xss());
