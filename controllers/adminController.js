@@ -18,3 +18,14 @@ exports.renderAdminUserPage = async (req, res) => {
     res.status(500).json({ error: "Failed to render admin user page" });
   }
 };
+
+exports.approveTheme = async (req, res) => {
+  const backUrl = req.header("Referer");
+  const id = req.params.id;
+  try {
+    await Theme.approveTheme(id);
+    res.redirect(backUrl);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to approve theme" });
+  }
+};
