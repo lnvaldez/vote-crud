@@ -34,9 +34,9 @@ exports.createTheme = async (req, res) => {
   }
 };
 
-exports.getAllThemes = async (req, res) => {
+exports.getApprovedThemes = async (req, res) => {
   try {
-    const themes = await Theme.getAllThemes();
+    const themes = await Theme.getApprovedThemes();
     res.render("pages/themes", { themes });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch all themes" });
