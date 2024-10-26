@@ -40,6 +40,20 @@ exports.verifyUser = async (email, password) => {
   }
 };
 
+exports.getAllUsers = async () => {
+  try {
+    const role = "user";
+    const query = "SELECT * FROM users WHERE role = ?";
+    const [result] = await pool.execute(query, [role]);
+
+    console.log("Fetched all users");
+
+    return result;
+  } catch (error) {
+    console.error("Failed to get all users: ", error);
+  }
+};
+
 exports.getUserByThemeUserId = async (id) => {
   try {
     const getUserId = "SELECT user_id FROM themes WHERE id = ?";
