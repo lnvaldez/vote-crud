@@ -6,8 +6,10 @@ const cookieParser = require("cookie-parser");
 const themeRoutes = require("./routes/themeRoutes");
 const linkRoutes = require("./routes/linkRoutes");
 const userRoutes = require("./routes/userRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 const xss = require("xss-clean");
 const { auth } = require("./middleware/auth");
+const { checkRole } = require("./middleware/role");
 
 dotenv.config();
 
@@ -33,10 +35,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(xss());
 
 app.use(auth);
+app.use(checkRole);
 
 app.use("/themes", themeRoutes);
 app.use("/links", linkRoutes);
 app.use("/users", userRoutes);
+app.use("/admin", adminRoutes);
 
 app.listen(PORT, () => {
   console.log(`Running app on port ${PORT}`);
