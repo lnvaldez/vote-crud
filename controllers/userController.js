@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Theme = require("../models/Theme");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 
@@ -58,4 +59,13 @@ exports.login = async (req, res) => {
 exports.logout = (req, res) => {
   res.clearCookie("token");
   res.redirect("/themes");
+};
+
+exports.deleteUser = async (req, res) => {
+  const id = req.params.id;
+  try {
+    await Theme.deleteUserThemes(id);
+    await User.deleteUser(id);
+    res.redirect("/admin/users");
+  } catch (error) {}
 };
