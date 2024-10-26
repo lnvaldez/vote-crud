@@ -25,13 +25,7 @@ exports.renderLoginPage = (req, res) => {
 };
 
 exports.login = async (req, res) => {
-  const { email, password, session } = req.body;
-
-  if (!session) {
-    console.log("User doesn't want to be remembered...");
-  } else {
-    console.log("Remember me...");
-  }
+  const { email, password, rememberMe } = req.body;
 
   try {
     const userId = await User.verifyUser(email, password);
@@ -44,7 +38,16 @@ exports.login = async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.cookie("token", token, { httpOnly: true, maxAge: 3600000 });
+    if (rememberMe) {
+      req.session.userId = userId;
+      req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
+    } else {
+      res.cookie("token", token, {
+        httpOnly: true,
+        maxAge: 1 * 60 * 60 * 1000,
+      });
+    }
+
     res.redirect("/themes");
     // return res.status(200).json({ message: "User verified" });
   } catch (error) {
