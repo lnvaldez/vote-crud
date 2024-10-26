@@ -101,6 +101,19 @@ exports.updateTheme = async (title, description, img_url, theme_id) => {
   }
 };
 
+exports.approveTheme = async (id) => {
+  const status = "approved";
+
+  const query = "UPDATE themes SET status = ? WHERE id = ?";
+
+  try {
+    await pool.execute(query, [status, id]);
+    console.log("Theme approved");
+  } catch (error) {
+    console.error("Failed to update theme status: ", error);
+  }
+};
+
 exports.voteForTheme = async (theme_id) => {
   const query = "UPDATE themes SET vote_count = vote_count + 1 WHERE id = ?";
 
