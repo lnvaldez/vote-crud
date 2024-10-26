@@ -4,9 +4,10 @@
     <img src="/images/logo.png" alt="Site Logo" />
   </div>
   <ul class="crud-links">
-    <li><a href="/themes/create">🗒️ Create</a></li>
-    <li><a href="/themes">🎨 Themes</a></li>
-    <li><a href="/themes/my-themes">📚 My Themes</a></li>
+    <% if (locals.user && locals.user.role === "admin") { %>
+    <li><a href="/admin/users">👤 Users</a></li>
+    <li><a href="/admin/themes">🛠️ Themes</a></li>
+    <% } %>
   </ul>
   <ul class="user">
     <% if (!locals.user) { %>
