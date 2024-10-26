@@ -12,7 +12,7 @@ exports.createTheme = async (title, description, img_url, user_id) => {
   }
 };
 
-exports.getAllThemes = async () => {
+exports.getApprovedThemes = async () => {
   const query =
     "SELECT * FROM themes WHERE status = ? ORDER BY vote_count DESC ";
   const status = "approved";
