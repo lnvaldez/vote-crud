@@ -16,9 +16,14 @@
                     <h2><%= theme.title %></h2>
                     <p><%= theme.description %></p>
                 </a>
-                <form action="/themes/<%= theme.id %>/vote" method="POST">
-                    <button type="submit">⭐ <%= theme.vote_count %></button>
-                </form>
+                <div>
+                    <form action="/themes/delete/<%= theme.id %>" method="POST">
+                        <button class="delete-button" type="submit">Reject</button>
+                    </form>
+                    <form action="/admin/approve/<%= theme.id %>" method="POST">
+                        <button type="submit">Approve</button>
+                    </form>
+                </div>
             </div>
         <% }) %>
     </div>
