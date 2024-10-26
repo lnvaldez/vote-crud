@@ -5,6 +5,18 @@ const { authorizeRole } = require("../middleware/role");
 
 const router = express.Router();
 
-router.get("/panel", authorizeRole, controller.renderAdminPage);
+router.get(
+  "/themes",
+  requireAuth,
+  authorizeRole("admin"),
+  controller.renderAdminThemePage
+);
+
+router.get(
+  "/users",
+  requireAuth,
+  authorizeRole("admin"),
+  controller.renderAdminUserPage
+);
 
 module.exports = router;
