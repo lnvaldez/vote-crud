@@ -78,3 +78,13 @@ exports.getRole = async (id) => {
     console.error("Failed to find user by ID: ", error);
   }
 };
+
+exports.deleteUser = async (id) => {
+  try {
+    const query = "DELETE FROM users WHERE id = ?";
+    await pool.execute(query, [id]);
+    console.log(`Deleted user with id ${id}`);
+  } catch (error) {
+    console.log("Failed to delete user: ", error);
+  }
+};
