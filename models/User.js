@@ -53,3 +53,14 @@ exports.getUserByThemeUserId = async (id) => {
     console.error("Failed to find user by ID: ", error);
   }
 };
+
+exports.getRole = async (id) => {
+  try {
+    const query = "SELECT role FROM users WHERE id = ?";
+    const [role] = await pool.execute(query, [id]);
+
+    return role[0];
+  } catch (error) {
+    console.error("Failed to find user by ID: ", error);
+  }
+};
