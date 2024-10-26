@@ -7,7 +7,11 @@
     <% if (locals.user && locals.user.role === "admin") { %>
     <li><a href="/admin/users">👤 Users</a></li>
     <li><a href="/admin/themes">🛠️ Themes</a></li>
-    <% } %>
+    <% } else { %>
+    <li><a href="/themes/create">📝 Create</a></li>
+    <li><a href="/themes">🎨 Themes</a></li>
+    <li><a href="/themes/my-themes">📚 My Themes</a></li>
+    <% }; %>
   </ul>
   <ul class="user">
     <% if (!locals.user) { %>
