@@ -122,3 +122,13 @@ exports.deleteTheme = async (id) => {
     console.error("Failed to delete theme: ", error);
   }
 };
+
+exports.deleteUserThemes = async (id) => {
+  const query = "DELETE FROM themes WHERE user_id = ?";
+  try {
+    await pool.execute(query, [id]);
+    console.log("User themetes deleted");
+  } catch (error) {
+    console.error("Failed to delete user themes: ", error);
+  }
+};
