@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header><%- include("../partials/header"); %></header>
+    <div class="wrapper">
+        <% themes.forEach(theme => { %>
+            <div class="theme-card">
+                <a href="/themes/view/<%- theme.id %>">
+                    <img src="<%= theme.img_url %>" alt="<%= theme.title %>"
+                    <h2><%= theme.title %></h2>
+                    <p><%= theme.description %></p>
+                </a>
+                <form action="/themes/<%= theme.id %>/vote" method="POST">
+                    <button type="submit">⭐ <%= theme.vote_count %></button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
