@@ -13,10 +13,12 @@ exports.createTheme = async (title, description, img_url, user_id) => {
 };
 
 exports.getAllThemes = async () => {
-  const query = "SELECT * FROM themes ORDER BY vote_count DESC";
+  const query =
+    "SELECT * FROM themes WHERE status = ? ORDER BY vote_count DESC ";
+  const status = "approved";
 
   try {
-    const [result] = await pool.execute(query);
+    const [result] = await pool.execute(query, [status]);
     console.log("Fetched all themes");
     return result;
   } catch (error) {
