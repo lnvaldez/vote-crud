@@ -5,7 +5,7 @@ const { requireAuth } = require("../middleware/auth");
 const router = express.Router();
 
 // Public routes
-router.get("/", controller.getAllThemes);
+router.get("/", controller.getApprovedThemes);
 router.get("/view/:id", controller.getTheme);
 
 // Protected routes
