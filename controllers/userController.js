@@ -36,18 +36,14 @@ exports.login = async (req, res) => {
     }
 
     const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
-      expiresIn: "1h",
+      expiresIn: rememberMe ? "7d" : "1h",
     });
 
-    if (rememberMe) {
-      req.session.userId = userId;
-      req.session.cookie.maxAge = 7 * 24 * 60 * 60 * 1000;
-    } else {
-      res.cookie("token", token, {
-        httpOnly: true,
-        maxAge: 1 * 60 * 60 * 1000,
-      });
-    }
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "development",
+      maxAge: rememberMe ? 7 * 24 * 60 * 60 * 1000 : null,
+    });
 
     res.redirect("/themes");
     // return res.status(200).json({ message: "User verified" });
