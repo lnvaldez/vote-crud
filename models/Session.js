@@ -13,6 +13,18 @@ exports.storeSession = async (sessionId, userId, expiresAt) => {
   }
 };
 
+exports.getSession = async (sessionId) => {
+  const query = "SELECT * FROM session WHERE session_id = ?";
+
+  try {
+    const [result] = await pool.query(query, [sessionId]);
+    console.log("Session fetched");
+    return result;
+  } catch (error) {
+    console.error("Failed to fetch session");
+  }
+};
+
 exports.expireSession = async (sessionId) => {
   const query = "UPDATE sessions SET is_valid = false WHERE session_id = ?";
 
