@@ -65,6 +65,7 @@ exports.login = async (req, res) => {
 };
 
 exports.logout = (req, res) => {
+  res.clearCookie("sessionId");
   res.clearCookie("token");
   res.redirect("/themes");
 };
