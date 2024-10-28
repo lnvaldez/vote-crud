@@ -1,7 +1,6 @@
 const Session = require("../models/Session");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-
 dotenv.config();
 
 exports.auth = async (req, res, next) => {
@@ -14,19 +13,19 @@ exports.auth = async (req, res, next) => {
     return next();
   }
 
-  if (!sessionId) {
-    return res.redirect("/users/login");
-  }
-
-  const result = await Session.getSession(sessionId);
-  console.log(result);
-
-  if (
-    !result ||
-    result.length === 0 ||
-    (result.expires_at && new Date() > result.expires_at)
-  ) {
-    return res.redirect("/users/login");
+  if (sessionId) {
+    try {
+      const result = await Session.getSession(sessionId);
+      if (
+        !result ||
+        result.length === 0 ||
+        (result[0].expires_at && new Date() > new Date(result[0].expires_at))
+      ) {
+        return res.redirect("/users/login");
+      }
+    } catch (error) {
+      return res.redirect("/users/login");
+    }
   }
 
   if (token) {
@@ -42,6 +41,7 @@ exports.auth = async (req, res, next) => {
     req.user = null;
     res.locals.user = null;
   }
+
   next();
 };
 
