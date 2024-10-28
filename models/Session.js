@@ -1,4 +1,3 @@
-const session = require("express-session");
 const pool = require("../config/config");
 
 exports.storeSession = async (sessionId, userId, expiresAt) => {
@@ -19,7 +18,7 @@ exports.getSession = async (sessionId) => {
   try {
     const [result] = await pool.query(query, [sessionId]);
     console.log("Session fetched");
-    return result;
+    return result[0];
   } catch (error) {
     console.error("Failed to fetch session");
   }
