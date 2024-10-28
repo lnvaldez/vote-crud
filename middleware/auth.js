@@ -8,8 +8,14 @@ exports.auth = async (req, res, next) => {
   const token = req.cookies.token;
   const sessionId = req.cookies.sessionId;
 
+  const publicPaths = ["/users/login", "/users/register", "/themes/"];
+
+  if (publicPaths.includes(req.path)) {
+    return next();
+  }
+
   if (!sessionId) {
-    res.redirect("/users/login");
+    return res.redirect("/users/login");
   }
 
   const result = await Session.getSession(sessionId);
@@ -20,7 +26,7 @@ exports.auth = async (req, res, next) => {
     result.length === 0 ||
     (result.expires_at && new Date() > result.expires_at)
   ) {
-    res.redirect("/users/login");
+    return res.redirect("/users/login");
   }
 
   if (token) {
