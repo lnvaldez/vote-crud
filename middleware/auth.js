@@ -5,7 +5,8 @@ dotenv.config();
 
 exports.auth = (req, res, next) => {
   const token = req.cookies.token;
-  if (token) {
+  const sessionId = req.cookies.sessionId;
+  if (sessionId && token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.user = { id: decoded.id };
