@@ -10,6 +10,7 @@ const adminRoutes = require("./routes/adminRoutes");
 const xss = require("xss-clean");
 const { auth } = require("./middleware/auth");
 const { checkRole } = require("./middleware/role");
+const cronTasks = require("./cron/scheduledTasks");
 
 dotenv.config();
 
