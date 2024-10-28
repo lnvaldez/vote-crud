@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const Theme = require("../models/Theme");
+const Session = require("../models/Session");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const session = require("express-session");
@@ -36,7 +37,11 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: "Invalid email or password" });
     }
 
-    const sessionId = 1; // crypto
+    const sessionId = crypto.randomUUID();
+    const expiresAt = rememberMe
+      ? new Date(Date.now() + 30 * 24 * 60 * 60 * 1000) // Remember Me is checked
+      : null;
+    await Session.storeSession(sessionId, userId, expiresAt);
 
     const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
       expiresIn: rememberMe ? "7d" : "1h",
@@ -64,7 +69,12 @@ exports.login = async (req, res) => {
   }
 };
 
-exports.logout = (req, res) => {
+exports.logout = async (req, res) => {
+  const sessionId = req.cookies.sessionId;
+
+  await Session.expireSession(sessionId);
+  await Session.deleteSession(sessionId);
+
   res.clearCookie("sessionId");
   res.clearCookie("token");
   res.redirect("/themes");
