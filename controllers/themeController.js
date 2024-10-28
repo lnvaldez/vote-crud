@@ -3,7 +3,7 @@ const Link = require("../models/Link");
 const User = require("../models/User");
 
 exports.renderCreateTheme = async (req, res) => {
-  res.render("pages/theme-create");
+  res.render("pages/theme-create", { csrfToken: req.csrfToken() });
 };
 
 exports.renderEditPage = async (req, res) => {
@@ -16,6 +16,7 @@ exports.renderEditPage = async (req, res) => {
       id: theme_id,
       theme: theme,
       links: links,
+      csrfToken: req.csrfToken(),
     });
   } catch (error) {
     res.status(500).json({ error: "Failed to render edit page" });
@@ -37,7 +38,7 @@ exports.createTheme = async (req, res) => {
 exports.getApprovedThemes = async (req, res) => {
   try {
     const themes = await Theme.getApprovedThemes();
-    res.render("pages/themes", { themes });
+    res.render("pages/themes", { themes, csrfToken: req.csrfToken() });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch all themes" });
   }
@@ -46,7 +47,7 @@ exports.getApprovedThemes = async (req, res) => {
 exports.getUserThemes = async (req, res) => {
   try {
     const themes = await Theme.getUserThemes(req.user.id);
-    res.render("pages/my-themes", { themes });
+    res.render("pages/my-themes", { themes, csrfToken: req.csrfToken() });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch themes" });
   }
@@ -58,7 +59,12 @@ exports.getTheme = async (req, res) => {
     const links = await Theme.getLinks(id);
     const theme = await Theme.getThemeById(id);
     const user = await User.getUserByThemeUserId(id);
-    res.render("pages/theme-view", { theme, links, user });
+    res.render("pages/theme-view", {
+      theme,
+      links,
+      user,
+      csrfToken: req.csrfToken(),
+    });
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch links" });
   }

@@ -1,6 +1,5 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-const session = require("express-session");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
 const themeRoutes = require("./routes/themeRoutes");
@@ -8,6 +7,7 @@ const linkRoutes = require("./routes/linkRoutes");
 const userRoutes = require("./routes/userRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const xss = require("xss-clean");
+const csrf = require("csurf");
 const { auth } = require("./middleware/auth");
 const { checkRole } = require("./middleware/role");
 const cronTasks = require("./cron/scheduledTasks");
@@ -16,6 +16,8 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 6000;
+
+const csrfProtection = csrf({ cookie: true });
 
 app.set("view engine", "ejs");
 // app.use(expressLayouts);
@@ -26,6 +28,7 @@ app.use(express.static("public"));
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(xss());
+app.use(csrfProtection);
 
 app.use(auth);
 app.use(checkRole);

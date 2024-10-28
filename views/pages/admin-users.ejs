@@ -13,6 +13,7 @@
       <div class="user-item">
         <p class="username"><%= user.username %></p>
         <form action="/users/delete/<%= user.id %>" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <button type="submit" class="delete-btn">Delete</button>
         </form>
       </div>

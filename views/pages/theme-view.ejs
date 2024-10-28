@@ -21,6 +21,7 @@
               <a href="<%= link.url %>"><%= link.title %></a>
             </div>
             <form action="/links/<%= link.id %>/vote" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
               <button type="submit">⭐<%= link.vote_count %></button>
             </form>
           </div>

@@ -18,6 +18,7 @@
                 </a>
                 <form action="/themes/<%= theme.id %>/vote" method="POST">
                     <button type="submit">⭐ <%= theme.vote_count %></button>
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                 </form>
             </div>
         <% }) %>

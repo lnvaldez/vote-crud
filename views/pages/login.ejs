@@ -25,6 +25,8 @@
           <a href="/users/register" class="forgot-password">Forgot password?</a>
         </div>
 
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
         <button type="submit">Login</button>
         <a href="/users/register">Create an account</a>
       </form>

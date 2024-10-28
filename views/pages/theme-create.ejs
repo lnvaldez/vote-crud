@@ -17,6 +17,7 @@
         <label for="img_url">Image URL:</label>
         <input type="url" id="img_url" name="img_url" required />
         <input type="hidden" name="user_id" value="<%= user.id %>" />
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
         <button type="submit">Create Theme</button>
       </form>
     </div>

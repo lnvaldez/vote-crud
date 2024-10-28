@@ -3,12 +3,11 @@ const Theme = require("../models/Theme");
 const Session = require("../models/Session");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
-const session = require("express-session");
 
 dotenv.config();
 
 exports.renderRegisterPage = (req, res) => {
-  res.render("pages/register");
+  res.render("pages/register", { csrfToken: req.csrfToken() });
 };
 
 exports.register = async (req, res) => {
@@ -24,7 +23,7 @@ exports.register = async (req, res) => {
 };
 
 exports.renderLoginPage = (req, res) => {
-  res.render("pages/login");
+  res.render("pages/login", { csrfToken: req.csrfToken() });
 };
 
 exports.login = async (req, res) => {

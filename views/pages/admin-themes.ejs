@@ -18,9 +18,11 @@
                 </a>
                 <div>
                     <form action="/themes/delete/<%= theme.id %>" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <button class="delete-button" type="submit">Reject</button>
                     </form>
                     <form action="/admin/approve/<%= theme.id %>" method="POST">
+                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                         <button class="approve-button" type="submit">Approve</button>
                     </form>
                 </div>

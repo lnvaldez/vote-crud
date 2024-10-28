@@ -78,6 +78,7 @@
           <button type="submit">Edit</button>
         </form>
         <form action="/links/delete/<%= link.id %>" method="POST">
+          <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
           <button type="submit">Delete</button>
         </form>
       </div>
