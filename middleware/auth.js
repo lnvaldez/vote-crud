@@ -1,12 +1,29 @@
+const Session = require("../models/Session");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 
 dotenv.config();
 
-exports.auth = (req, res, next) => {
+exports.auth = async (req, res, next) => {
   const token = req.cookies.token;
   const sessionId = req.cookies.sessionId;
-  if (sessionId && token) {
+
+  if (!sessionId) {
+    res.redirect("/users/login");
+  }
+
+  const result = await Session.getSession(sessionId);
+  console.log(result);
+
+  if (
+    !result ||
+    result.length === 0 ||
+    (result.expires_at && new Date() > result.expires_at)
+  ) {
+    res.redirect("/users/login");
+  }
+
+  if (token) {
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
       req.user = { id: decoded.id };
