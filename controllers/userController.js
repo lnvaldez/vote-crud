@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Theme = require("../models/Theme");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const session = require("express-session");
 
 dotenv.config();
 
@@ -35,9 +36,20 @@ exports.login = async (req, res) => {
       return res.status(400).json({ error: "Invalid email or password" });
     }
 
+    const sessionId = 1; // crypto
+
     const token = jwt.sign({ id: userId }, process.env.JWT_SECRET, {
       expiresIn: rememberMe ? "7d" : "1h",
     });
+
+    if (rememberMe) {
+      res.cookie("sessionId", sessionId, {
+        httpOnly: true,
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+      });
+    } else {
+      res.cookie("sessionId", sessionId, { httpOnly: true });
+    }
 
     res.cookie("token", token, {
       httpOnly: true,
