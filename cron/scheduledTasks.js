@@ -5,7 +5,7 @@ cron.schedule("*/10 * * * *", async () => {
   const now = new Date();
 
   try {
-    await Session.deleteExpiredSessions(now);
+    await Session.deleteNullSessions(now);
     console.log("Expired sessions cleaned up at: ", now);
   } catch (error) {
     console.error("Failed to clean up expired sessions:", error);

@@ -46,7 +46,7 @@ exports.deleteSession = async (sessionId) => {
   }
 };
 
-exports.deleteExpiredSessions = async () => {
+exports.deleteNullSessions = async () => {
   const query = "DELETE FROM sessions WHERE expires_at IS NULL";
 
   try {
