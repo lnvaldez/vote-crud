@@ -23,14 +23,6 @@ app.set("view engine", "ejs");
 
 app.use(express.json());
 app.use(express.static("public"));
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { httpOnly: true, secure: process.env.NODE_ENV === "development" },
-  })
-);
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(xss());
