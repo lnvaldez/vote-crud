@@ -45,3 +45,14 @@ exports.deleteSession = async (sessionId) => {
     console.error("Failed to delete session");
   }
 };
+
+exports.deleteExpiredSessions = async () => {
+  const query = "DELETE FROM sessions WHERE expires_at IS NULL";
+
+  try {
+    await pool.query(query);
+    console.log("Null sessions deleted");
+  } catch (error) {
+    console.error("Failed to delete null sessions");
+  }
+};
