@@ -10,7 +10,7 @@ const xss = require("xss-clean");
 const csrf = require("csurf");
 const { auth } = require("./middleware/auth");
 const { checkRole } = require("./middleware/role");
-const cronTasks = require("./cron/scheduledTasks");
+const cronTasks = require("./utils/cron/scheduledTasks");
 
 dotenv.config();
 
