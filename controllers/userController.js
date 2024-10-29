@@ -122,8 +122,7 @@ exports.forgotPassword = async (req, res, next) => {
       subject: "Reset password",
       message: message,
     });
-    res.status(200).json({ status: "success" });
-    // Redirect?
+    res.status(200).send("Check your email");
   } catch (error) {
     await User.storeResetData(req.body.email, null, null);
     return res.status(500).json("Failed to send reset password email: ", error);
