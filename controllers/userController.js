@@ -102,7 +102,7 @@ exports.forgotPassword = async (req, res, next) => {
     return res.status(404).send("Can't find requested resource");
   }
 
-  const resetToken = createResetPasswordToken();
+  const resetToken = createResetPasswordToken(req.body.email);
 };
 
 exports.resetPassword = async (req, res, next) => {};
