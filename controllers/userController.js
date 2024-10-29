@@ -120,7 +120,10 @@ exports.forgotPassword = async (req, res, next) => {
       subject: "Reset password",
       message: message,
     });
-  } catch (error) {}
+  } catch (error) {
+    await User.storeResetData(req.body.email, undefined, undefined);
+    return res.status(500).json("Failed to send reset password email: ", error);
+  }
 };
 
 exports.resetPassword = async (req, res, next) => {};
