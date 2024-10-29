@@ -90,6 +90,10 @@ exports.deleteUser = async (req, res) => {
   } catch (error) {}
 };
 
+exports.renderForgotPage = async (req, res) => {
+  res.render("pages/forgot-password", { csrfToken: req.csrfToken() });
+};
+
 exports.forgotPassword = async (req, res, next) => {
   const user = User.getUserByEmail(req.body.email);
 
@@ -97,7 +101,9 @@ exports.forgotPassword = async (req, res, next) => {
     return res.status(404).send("Can't find requested resource");
   }
 
-  const resetToken = crypto.randomBytes(32, this.toString("hex"));
+  const resetToken = crypto.randomBytes(32, toString("hex"));
+
+  crypto.createHash("sha256").update(resetToken).digest("hex");
 };
 
 exports.resetPassword = async (req, res, next) => {};
