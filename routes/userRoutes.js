@@ -19,6 +19,9 @@ router.post(
   controller.login
 );
 
+router.post("/forgot", controller.forgotPassword);
+router.post("/reset", controller.resetPassword);
+
 router.get("/logout", controller.logout);
 
 router.post("/delete/:id", controller.deleteUser);
