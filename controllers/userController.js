@@ -50,14 +50,15 @@ exports.login = async (req, res) => {
       res.cookie("sessionId", sessionId, {
         httpOnly: true,
         maxAge: 30 * 24 * 60 * 60 * 1000,
+        secure: true,
       });
     } else {
-      res.cookie("sessionId", sessionId, { httpOnly: true });
+      res.cookie("sessionId", sessionId, { httpOnly: true, secure: true });
     }
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "development",
+      secure: true,
       maxAge: rememberMe ? 7 * 24 * 60 * 60 * 1000 : null,
     });
 
