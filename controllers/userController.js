@@ -129,6 +129,14 @@ exports.forgotPassword = async (req, res, next) => {
   }
 };
 
+exports.renderResetPage = async (req, res) => {
+  const resetToken = req.params.token;
+  res.render("pages/reset-password", {
+    resetToken,
+    csrfToken: req.csrfToken(),
+  });
+};
+
 exports.resetPassword = async (req, res, next) => {
   const token = crypto
     .createHash("sha256")
