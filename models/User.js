@@ -92,6 +92,17 @@ exports.getUserByEmail = async (email) => {
   }
 };
 
+exports.getUserByToken = async (token) => {
+  try {
+    const query = "SELECT * FROM users WHERE resetToken = ?";
+    const [user] = await pool.execute(query, [token]);
+    console.log("Fetched user by token");
+    return user[0];
+  } catch (error) {
+    console.error("Failed to find user by token");
+  }
+};
+
 exports.getRole = async (id) => {
   try {
     const query = "SELECT role FROM users WHERE id = ?";
