@@ -4,6 +4,7 @@ const Session = require("../models/Session");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 const crypto = require("crypto");
+const { createResetPasswordToken } = require("../utils/resetToken");
 
 dotenv.config();
 
@@ -101,19 +102,7 @@ exports.forgotPassword = async (req, res, next) => {
     return res.status(404).send("Can't find requested resource");
   }
 
-  const resetToken = crypto.randomBytes(32, toString("hex"));
-
-  const hashedResetToken = crypto
-    .createHash("sha256")
-    .update(resetToken)
-    .digest("hex");
-
-  const expireDate = Date.now() + 10 * 60 * 1000;
-
-  try {
-    await User.storeResetData(hashedResetToken, expireDate);
-    return resetToken;
-  } catch (error) {}
+  const resetToken = createResetPasswordToken();
 };
 
 exports.resetPassword = async (req, res, next) => {};
