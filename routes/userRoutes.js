@@ -19,6 +19,7 @@ router.post(
   controller.login
 );
 
+router.get("/forgot", controller.renderForgotPage);
 router.post("/forgot", controller.forgotPassword);
 router.post("/reset", controller.resetPassword);
 
