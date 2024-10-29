@@ -21,7 +21,7 @@ router.post(
 
 router.get("/forgot", controller.renderForgotPage);
 router.post("/forgot", controller.forgotPassword);
-router.post("/reset", controller.resetPassword);
+router.patch("/reset", controller.resetPassword);
 
 router.get("/logout", controller.logout);
 
