@@ -68,6 +68,18 @@ exports.getUserByThemeUserId = async (id) => {
   }
 };
 
+exports.getUserByEmail = async (email) => {
+  try {
+    const query = "SELECT * FROM users WHERE email = ?";
+    const [user] = await pool.execute(query, [email]);
+
+    console.log("Fetched user by email");
+    return user[0];
+  } catch (error) {
+    console.error("Failed to find user by email: ", error);
+  }
+};
+
 exports.getRole = async (id) => {
   try {
     const query = "SELECT role FROM users WHERE id = ?";
