@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const crypto = require("crypto");
 
-exports.createResetPasswordToken = async () => {
+exports.createResetPasswordToken = async (email) => {
   const resetToken = crypto.randomBytes(32).toString("hex");
 
   const hashedResetToken = crypto
@@ -14,7 +14,7 @@ exports.createResetPasswordToken = async () => {
   console.log(hashedResetToken, expireDate);
 
   try {
-    await User.storeResetData(hashedResetToken, expireDate);
+    await User.storeResetData(email, hashedResetToken, expireDate);
     return resetToken;
   } catch (error) {
     console.error("Failed to store password reset data");
