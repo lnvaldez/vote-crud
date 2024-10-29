@@ -3,6 +3,7 @@ const Theme = require("../models/Theme");
 const Session = require("../models/Session");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const sendEmail = require("../utils/email");
 const crypto = require("crypto");
 const { createResetPasswordToken } = require("../utils/resetToken");
 
