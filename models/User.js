@@ -60,7 +60,7 @@ exports.resetPassword = async (password, resetToken) => {
     await pool.execute(query, [hash, resetToken]);
     console.log("Password reset");
   } catch (error) {
-    console.error("Failed to reset password");
+    console.error("Failed to reset password: ", error);
   }
 };
 
