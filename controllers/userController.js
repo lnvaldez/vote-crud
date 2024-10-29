@@ -107,6 +107,9 @@ exports.forgotPassword = async (req, res, next) => {
   }
 
   const resetToken = createResetPasswordToken(req.body.email);
+
+  const resetUrl = `${req.protocol}://${req.get("host")}/users/reset`;
+  await sendEmail();
 };
 
 exports.resetPassword = async (req, res, next) => {};
