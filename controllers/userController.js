@@ -103,7 +103,16 @@ exports.forgotPassword = async (req, res, next) => {
 
   const resetToken = crypto.randomBytes(32, toString("hex"));
 
-  crypto.createHash("sha256").update(resetToken).digest("hex");
+  const hashedResetToken = crypto
+    .createHash("sha256")
+    .update(resetToken)
+    .digest("hex");
+
+  const expireDate = Date.now() + 10 * 60 * 1000;
+
+  try {
+    await User.storeResetData(hashedResetToken, expireDate);
+  } catch (error) {}
 };
 
 exports.resetPassword = async (req, res, next) => {};
