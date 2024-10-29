@@ -11,8 +11,6 @@ exports.createResetPasswordToken = async (email) => {
 
   const expireDate = Date.now() + 10 * 60 * 1000;
 
-  console.log(hashedResetToken, expireDate);
-
   try {
     await User.storeResetData(email, hashedResetToken, expireDate);
     return resetToken;
