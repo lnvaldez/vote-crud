@@ -52,6 +52,18 @@ exports.storeResetData = async (email, hashedResetToken, tokenExpireDate) => {
   }
 };
 
+exports.resetPassword = async (password, resetToken) => {
+  const hash = await bcrypt.hash(password, 10);
+  const query = "UPDATE users SET password = ? WHERE resetToken = ?";
+
+  try {
+    await pool.execute(query, [hash, resetToken]);
+    console.log("Password reset");
+  } catch (error) {
+    console.error("Failed to reset password");
+  }
+};
+
 exports.getAllUsers = async () => {
   try {
     const role = "user";
