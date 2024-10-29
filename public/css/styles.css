@@ -305,3 +305,8 @@ form button[type="submit"]:hover {
   margin: 0;
   font-weight: bold;
 }
+
+.login-options {
+  display: flex;
+  gap: 20px;
+}
