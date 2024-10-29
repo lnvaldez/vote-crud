@@ -3,6 +3,7 @@ const Theme = require("../models/Theme");
 const Session = require("../models/Session");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const crypto = require("crypto");
 
 dotenv.config();
 
@@ -88,3 +89,15 @@ exports.deleteUser = async (req, res) => {
     res.redirect("/admin/users");
   } catch (error) {}
 };
+
+exports.forgotPassword = async (req, res, next) => {
+  const user = User.getUserByEmail(req.body.email);
+
+  if (!user) {
+    return res.status(404).send("Can't find requested resource");
+  }
+
+  const resetToken = crypto.randomBytes(32, this.toString("hex"));
+};
+
+exports.resetPassword = async (req, res, next) => {};
