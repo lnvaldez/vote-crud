@@ -136,4 +136,22 @@ exports.resetPassword = async (req, res, next) => {
     .update(req.params.token)
     .digest("hex");
   const user = await User.getUserByToken(token);
+  const newPassword = req.body.password;
+
+  if (!user) {
+    return res.status(404).send("User not found");
+  }
+
+  console.log(user.resetTokenExpires);
+
+  if (user.resetTokenExpires < Date.now()) {
+    return res.status(410).send("The reset token is no longer valid");
+  }
+
+  try {
+    await User.resetPassword(newPassword, token);
+    await User.storeResetData(user.email, null, null);
+  } catch (error) {
+    return res.status(500).send("Failed to reset password: ", error);
+  }
 };
