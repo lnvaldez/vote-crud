@@ -10,6 +10,15 @@ const sendEmail = (option) => {
       password: process.env.EMAIL_PASSWORD,
     },
   });
+
+  const emailOptions = {
+    from: "Academy reset<reset@academy.com>",
+    to: option.email,
+    subject: option.subject,
+    text: option.message,
+  };
+
+  transporter.sendMail(emailOptions);
 };
 
 module.exports = sendEmail;
