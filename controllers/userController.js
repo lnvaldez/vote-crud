@@ -106,22 +106,26 @@ exports.forgotPassword = async (req, res, next) => {
     return res.status(404).send("Can't find requested resource");
   }
 
-  const resetToken = createResetPasswordToken(req.body.email);
+  const resetToken = await createResetPasswordToken(req.body.email);
 
   const resetUrl = `${req.protocol}://${req.get(
     "host"
   )}/users/reset/${resetToken}`;
 
-  const message = `Your password reset link is ready. Use the link below to reset your password\n\n${resetUrl} Link valid for 10 minutes`;
+  console.log(resetUrl);
+
+  const message = `Your password reset link is ready. Use the link below to reset your password\n\n${resetUrl}\n\nLink valid for 10 minutes`;
 
   try {
     await sendEmail({
-      email: user.email,
+      email: req.body.email,
       subject: "Reset password",
       message: message,
     });
+    res.status(200).json({ status: "success" });
+    // Redirect?
   } catch (error) {
-    await User.storeResetData(req.body.email, undefined, undefined);
+    await User.storeResetData(req.body.email, null, null);
     return res.status(500).json("Failed to send reset password email: ", error);
   }
 };
