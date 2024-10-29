@@ -40,6 +40,18 @@ exports.verifyUser = async (email, password) => {
   }
 };
 
+exports.storeResetData = async (hashedResetToken, tokenExpireDate) => {
+  const query =
+    "INSERT INTO users (resetToken, resetTokenExpires) VALUES (?, ?)";
+
+  try {
+    await pool.execute(query, [hashedResetToken, tokenExpireDate]);
+    console.log("Stored password reset data");
+  } catch (error) {
+    console.error("Failed to store password reset data");
+  }
+};
+
 exports.getAllUsers = async () => {
   try {
     const role = "user";
