@@ -2,7 +2,7 @@ const User = require("../models/User");
 const crypto = require("crypto");
 
 exports.createResetPasswordToken = async () => {
-  const resetToken = crypto.randomBytes(32, toString("hex"));
+  const resetToken = crypto.randomBytes(32).toString("hex");
 
   const hashedResetToken = crypto
     .createHash("sha256")
