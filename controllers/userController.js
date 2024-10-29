@@ -112,6 +112,7 @@ exports.forgotPassword = async (req, res, next) => {
 
   try {
     await User.storeResetData(hashedResetToken, expireDate);
+    return resetToken;
   } catch (error) {}
 };
 
