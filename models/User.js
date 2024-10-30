@@ -54,7 +54,7 @@ exports.storeResetData = async (email, hashedResetToken, tokenExpireDate) => {
 
 exports.resetPassword = async (password, resetToken) => {
   const hash = await bcrypt.hash(password, 10);
-  const query = "UPDATE users SET password = ? WHERE resetToken = ?";
+  const query = "UPDATE users SET hash = ? WHERE resetToken = ?";
 
   try {
     await pool.execute(query, [hash, resetToken]);
